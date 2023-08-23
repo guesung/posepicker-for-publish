@@ -1,10 +1,4 @@
 export const ICON = {
-  close: '/icons/close.svg',
-  restart: '/icons/restart.svg',
-  bookmark: {
-    fill: '/icons/bookmark_fill.svg',
-    empty: '/icons/bookmark.svg',
-  },
   arrow: {
     back: '/icons/arrow_back.svg',
   },

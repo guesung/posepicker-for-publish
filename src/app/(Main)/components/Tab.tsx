@@ -7,7 +7,6 @@ const tabData = [
   { path: '/pick', title: '포즈픽' },
   { path: '/talk', title: '포즈톡' },
   { path: '/feed', title: '포즈피드' },
-  { path: '/bookmark', title: '북마크' },
 ];
 
 export default function Tab() {
@@ -27,7 +26,7 @@ export default function Tab() {
               <div className="relative border-b-2 border-b-main-violet" />
             </>
           ) : (
-            <Link className="py-12" href={item.path} as={item.path}>
+            <Link className="py-12 text-tertiary" href={item.path} as={item.path}>
               <h5>{item.title}</h5>
             </Link>
           )}
