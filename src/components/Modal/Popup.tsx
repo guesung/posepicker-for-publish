@@ -1,4 +1,4 @@
-import ModalWrapper from './PortalWrapper';
+import ModalWrapper from './ModalWrapper';
 import { StrictPropsWithChildren } from '@/types';
 
 interface PopupProps {
@@ -8,7 +8,7 @@ interface PopupProps {
 export default function Popup({ children }: StrictPropsWithChildren<PopupProps>) {
   return (
     <ModalWrapper>
-      <section className="flex w-300 flex-col items-center  rounded-16 bg-white px-16 py-12">
+      <section className="flex w-300 flex-col items-center rounded-16 bg-white px-16 py-12">
         {children}
       </section>
     </ModalWrapper>
