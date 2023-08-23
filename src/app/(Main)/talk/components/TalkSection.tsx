@@ -4,13 +4,11 @@ import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import Lottie from 'react-lottie-player';
 
+import lottieTalkAfterClick from '#/lotties/talk_after_click.json';
+import lottieTalkBeforeClick from '#/lotties/talk_before_click.json';
 import { usePoseTalkQuery } from '@/apis';
 import { BottomFixedButton } from '@/components/Button';
 
-import lottieTalkAfterClick from '#/lotties/talk_after_click.json';
-import lottieTalkBeforeClick from '#/lotties/talk_before_click.json';
-
-interface TalkSectionProps {}
 export default function TalkSection() {
   const [isFirstLoading, setIsFirstLoading] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -32,7 +30,7 @@ export default function TalkSection() {
 
   return (
     <section className="flex flex-col items-center">
-      <h1>{talkWord}</h1>
+      <h1 className="text-center">{talkWord}</h1>
       {isFirstLoading && (
         <Lottie
           loop

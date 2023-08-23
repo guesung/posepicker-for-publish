@@ -9,12 +9,13 @@ import { usePosePickQuery } from '@/apis';
 import { BottomFixedButton } from '@/components/Button';
 import { Loading } from '@/components/Loading';
 import { Spacing } from '@/components/Spacing';
+import useLoading from '@/hooks/useLoading';
 
 const countList = ['1인', '2인', '3인', '4인', '5인+'];
 
 export default function PickSection() {
   const [countState, setCountState] = useState<string>('1인');
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const { isLoading, startLoading } = useLoading({ loadingDelay: 3000 });
   const [image, setImage] = useState<string>('');
   const { refetch } = usePosePickQuery(+countState[0], {
     onSuccess: (data) => {
@@ -23,25 +24,13 @@ export default function PickSection() {
     },
   });
 
-  useEffect(() => {
-    if (!isLoading) return;
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-  }, [isLoading]);
-
   const handlePickClick = () => {
+    startLoading();
     refetch();
-    setIsLoading(true);
   };
 
   return (
     <section className="flex flex-col px-20">
-      {isLoading && (
-        <Loading>
-          <Lottie loop animationData={lottiePick} play style={{ width: '100%', height: '33rem' }} />
-        </Loading>
-      )}
       <div className="flex justify-evenly rounded-8 py-16">
         {countList.map((count) => (
           <CountItem
@@ -56,6 +45,9 @@ export default function PickSection() {
       <Spacing size={13} />
 
       <div className="relative h-520">
+        {true && (
+          <Lottie loop animationData={lottiePick} play style={{ width: '100%', height: '100%' }} />
+        )}
         <Image
           src={image || '/images/sample.png'}
           fill
