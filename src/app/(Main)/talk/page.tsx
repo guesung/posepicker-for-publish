@@ -4,10 +4,10 @@ import { Spacing } from '@/components/Spacing';
 
 export default function Talk() {
   return (
-    <div>
-      <Spacing size={30} />
+    <>
+      <Spacing size={100} />
       <TitleSection />
       <TalkSection />
-    </div>
+    </>
   );
 }
