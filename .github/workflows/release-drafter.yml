@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - main
+  push:
+    branches:
+      - OZ-test
 jobs:
   update_release_draft:
     runs-on: ubuntu-latest
