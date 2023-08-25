@@ -8,7 +8,6 @@ import LinkShareModal from './LinkShareModal';
 import { usePoseDetailQuery } from '@/apis';
 import BottomFixedDiv from '@/components/BottomFixedDiv';
 import { Button } from '@/components/Button';
-import { Popup } from '@/components/Modal';
 import { useOverlay } from '@/components/Overlay/useOverlay';
 import { BASE_SITE_URL } from '@/constants';
 import useKakaoShare from '@/hooks/useKakaoShare';
@@ -34,7 +33,7 @@ export default function DetailSection({ poseId }: DetailSectionProps) {
   };
 
   return (
-    <div className="flex flex-col items-center">
+    <div>
       {sourceUrl && (
         <Link
           href={'https://' + sourceUrl}
@@ -43,36 +42,15 @@ export default function DetailSection({ poseId }: DetailSectionProps) {
           ↗ 이미지 출처
         </Link>
       )}
-      <div className="relative h-520 w-400">
-        <Image
-          src={imageKey}
-          fill
-          alt="detailImage"
-          className="cursor-pointer"
-          onClick={() =>
-            open(({ exit }) => (
-              <Popup>
-                <Image
-                  src={imageKey}
-                  alt="enlargementImage"
-                  priority
-                  loading="eager"
-                  onClick={exit}
-                  width={500}
-                  height={440}
-                  className="cursor-pointer"
-                />
-              </Popup>
-            ))
-          }
-        />
+      <div className="relative h-520">
+        <Image src={imageKey} fill alt="detailImage" />
       </div>
-      <div className="flex flex-wrap gap-10 px-20 py-12">
+      <div className="flex gap-10 px-20 py-12">
         {tagAttributes?.split(',').map((tag, index) => <Tag key={index} name={tag} />)}
       </div>
 
       <BottomFixedDiv className="flex gap-8">
-        <Button className="max-w-120 bg-sub-white" type="button" onClick={handleShareLink}>
+        <Button className="w-160 bg-sub-white" type="button" onClick={handleShareLink}>
           링크 공유
         </Button>
         <Button
@@ -91,12 +69,11 @@ interface TagProps {
 
 function Tag({ name }: TagProps) {
   return (
-    <Link
-      href={`/feed?filter=${name}`}
+    <button
       type="button"
-      className="text-subtitle-2 whitespace-nowrap rounded-30 bg-sub-white px-12 py-5 text-secondary"
+      className="text-subtitle-2 rounded-30 bg-sub-white px-12 py-5 text-secondary"
     >
       {name}
-    </Link>
+    </button>
   );
 }

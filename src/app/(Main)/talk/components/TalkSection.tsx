@@ -11,7 +11,7 @@ import useLoading from '@/hooks/useLoading';
 
 export default function TalkSection() {
   const { isLoading: isFirstLoading, stopLoading: stopFirstLoading } = useLoading({
-    loadingDelay: 1000,
+    loadingDelay: 3000,
     isFirstLoadingInfinite: true,
   });
   const ref = useRef(null);
@@ -19,12 +19,11 @@ export default function TalkSection() {
   const { refetch, data } = usePoseTalkQuery();
 
   const { isLoading, startLoading } = useLoading({
-    loadingDelay: 1000,
+    loadingDelay: 3000,
     onStopLoading: () => data && setTalkWord(data.poseWord.content),
     initialState: false,
   });
-  const [talkWord, setTalkWord] = useState<string>(`제시어에 맞춰
-  포즈를 취해요!`);
+  const [talkWord, setTalkWord] = useState<string>('포즈로 말해요');
 
   const handleTalkClick = () => {
     if (isFirstLoading) stopFirstLoading();
@@ -50,7 +49,7 @@ export default function TalkSection() {
           loop
           animationData={lottieTalkAfterClick}
           play
-          style={{ width: '120%', height: '100%' }}
+          style={{ width: '100%', height: '100%' }}
         />
       )}
       {!isFirstLoading && !isLoading && (
@@ -58,11 +57,10 @@ export default function TalkSection() {
           loop
           animationData={lottieTalkAfterClick}
           play
-          style={{ width: '120%', height: '100%' }}
+          style={{ width: '100%', height: '100%' }}
           speed={0}
         />
       )}
-
       <BottomFixedButton
         className="bg-main-violet text-white"
         onClick={handleTalkClick}

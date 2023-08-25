@@ -14,7 +14,6 @@ export default function PhotoList({ data }: PhotoList) {
             key={item.poseInfo.poseId}
             imageKey={item.poseInfo.imageKey}
             source={item.poseInfo.source}
-            id={item.poseInfo.poseId}
           />
         ))
       ) : (
