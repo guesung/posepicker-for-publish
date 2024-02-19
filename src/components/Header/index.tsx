@@ -20,14 +20,9 @@ function Header({ title = '', close = false, menu = false, children }: PropsWith
         <h4 className="flex flex-1">{title}</h4>
         <div className="flex">
           {menu && (
-            <>
-              <Link href="/bookmark">
-                <IconButton icon={ICON.bookmark.black} />
-              </Link>
-              <Link href="/menu">
-                <IconButton icon={ICON.menu} />
-              </Link>
-            </>
+            <Link href="/menu">
+              <IconButton icon={ICON.menu} />
+            </Link>
           )}
         </div>
       </div>
@@ -37,8 +32,6 @@ function Header({ title = '', close = false, menu = false, children }: PropsWith
 }
 
 export const DetailHeader = () => <Header close={true} menu={true} />;
-
-export const BookmarkHeader = () => <Header close={true} title="북마크" />;
 export const MenuHeader = () => <Header close={true} title="메뉴" />;
 
 export const MainHeader = ({ children }: PropsWithChildren) => (
