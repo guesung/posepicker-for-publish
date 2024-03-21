@@ -1,6 +1,8 @@
 'use client';
 
-import { patchLogout } from '@/apis';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+
 import { PrimaryButton } from '@/components/Button';
 import { Popup } from '@/components/Modal';
 import { useOverlay } from '@/components/Overlay/useOverlay';
@@ -8,15 +10,10 @@ import { menuList } from '@/constants/data';
 import useUserState from '@/context/userState';
 
 export default function MenuListSection() {
-  const { isLogin, accessToken, clearUser } = useUserState();
+  const { isLogin } = useUserState();
   const { open } = useOverlay();
+  const router = useRouter();
 
-  function logout() {
-    if (accessToken) {
-      clearUser();
-      patchLogout(accessToken, accessToken);
-    }
-  }
   function handleLogout() {
     open(({ exit }) => (
       <Popup
@@ -24,15 +21,15 @@ export default function MenuListSection() {
         content={`북마크는 로그인 시에만 유지되어요.\n정말 로그아웃하시겠어요?`}
       >
         <>
-          <PrimaryButton text={'로그아웃'} onClick={logout} type="secondary" />
+          <PrimaryButton
+            text={'로그아웃'}
+            type="secondary"
+            onClick={() => router.replace('/auth/logout')}
+          />
           <PrimaryButton text="로그인 유지" onClick={exit} />
         </>
       </Popup>
     ));
-  }
-
-  function handleDeleteAccount() {
-    clearUser();
   }
 
   return (
@@ -52,14 +49,14 @@ export default function MenuListSection() {
       )}
       {isLogin && (
         <>
-          <div className="cursor-pointer py-12" onClick={() => handleLogout()}>
+          <div className="cursor-pointer py-12" onClick={handleLogout}>
             <span id="subtitle-1">로그아웃</span>
           </div>
-          <div className="cursor-pointer py-12" onClick={() => handleDeleteAccount()}>
+          <Link href={'/menu/withdraw'} className="cursor-pointer py-12">
             <span id="subtitle-1" className="text-tertiary">
               탈퇴하기
             </span>
-          </div>
+          </Link>
         </>
       )}
     </section>
