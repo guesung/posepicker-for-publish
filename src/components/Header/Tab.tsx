@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -23,10 +22,7 @@ export default function Tab() {
               <h5 id="subtitle-1" className="text-brand">
                 {item.title}
               </h5>
-              <motion.div
-                layoutId="underline"
-                className="absolute bottom-0 left-0 w-full border-b-2 border-main-violet"
-              />
+              <div className="absolute bottom-0 left-0 w-full border-b-2 border-main-violet" />
             </div>
           ) : (
             <Link className="py-12 text-tertiary" href={item.path} as={item.path}>
